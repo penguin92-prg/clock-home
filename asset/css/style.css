@@ -1,0 +1,290 @@
+@charset "utf-8";
+
+:root{
+  --background: #f8f8f8;
+
+  --span1: #e4e4e4;
+  --span2: #efefef;
+  --text: #0f0f0f;
+
+  --circle: 35rem;
+}
+
+html{
+  width: 100dvw;
+  height: 100dvh;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--background);
+
+  font-family: "Sen", "Saira Condensed" sans-serif;
+}
+
+body{
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  
+  width: 90%;
+  height: 100%;
+
+  margin: auto;
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+#clockContainer{
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 80%;
+
+  margin: auto 0;
+  padding: 0;
+}
+
+#clockContainer>#time{
+  display: block;
+
+  width: fit-content;
+  height: auto;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text);
+  font-size: 12.5rem;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 100;
+
+  line-height: 17.5rem;
+  text-align: center;
+  text-decoration: none;
+
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+}
+
+
+#clockContainer>#span1{
+  content: "";
+  
+  position: absolute;
+  left: calc((100% - var(--circle)) / 2);
+  top: calc((100% - var(--circle)) / 2);
+  z-index: -3;
+
+  display: block;
+  width: var(--circle);
+  height: var(--circle);
+
+  border-radius: 50%;
+}
+
+#clockContainer>#span2{
+  content: "";
+
+  position: absolute;
+  left: calc((100% - calc(var(--circle) - 2rem)) / 2);
+  top: calc((100% - calc(var(--circle) - 2rem)) / 2);
+  z-index: -2;
+
+  display: block;
+  width: calc(var(--circle) - 2rem);
+  height: calc(var(--circle) - 2rem);
+
+  border-radius: 50%;
+  background: var(--span2);
+}
+
+#clockContainer>#span3{
+  content: "";
+
+  position: absolute;
+  left: calc((100% - calc(var(--circle) - 4rem)) / 2);
+  top: calc((100% - calc(var(--circle) - 4rem)) / 2);
+  z-index: -1;
+
+  display: block;
+  width: calc(var(--circle) - 4rem);
+  height: calc(var(--circle) - 4rem);
+
+  border-radius: 50%;
+  background: var(--span2);
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+#calendarContainer{
+  position: relative;
+
+  width: 100%;
+  height: 80%;
+  
+  margin: auto 0;
+  padding: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#calendarContainer::-webkit-scrollbar {
+  display: none;
+}
+
+#calendarContainer>ul{
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0;
+
+  width: 100%;
+  height: 200%;
+
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+
+#calendarContainer>ul>li{
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+  scroll-snap-align: center;
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+#calendar1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+#dayAndMonth{
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text);
+  font-size: 4rem;
+  font-family: "Sen", sans-serif;
+  font-weight: 100;
+
+  line-height: 6rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+#date{
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--text);
+  font-size: 17.5rem;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 100;
+
+  line-height: 22.5rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+#calendar2>div{
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0;
+
+  width: 90%;
+  height: 100%;
+  
+  margin: auto;
+  padding: 0;
+}
+
+#calendar2>div>div.week{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+
+  width: 100%;
+  height: auto;
+
+  margin: 0;
+  padding: 0;
+}
+#calendar2>div>div.week:nth-of-type(1)>div.day{
+  opacity: 0.5
+}
+
+#calendar2>div>div.week>div.day{
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+  height: auto;
+  
+  margin: auto;
+  padding: 0;
+
+  color: var(--text);
+  font-size: 2rem;
+  font-family: "Sen", sans-serif;
+  font-weight: 100;
+
+  line-height: auto;
+  text-align: center;
+  text-decoration: none;
+}
+#calendar2>div>div.week>div.day#today::after{
+  content: "";
+
+  position: absolute;
+  top: calc(50% - 4rem / 2);
+  left: calc(50% - 4rem / 2);
+  z-index: -1;
+
+  height: 4rem;
+  width: 4rem;
+
+  border-radius: 50%;
+  background-color: var(--span1);
+}

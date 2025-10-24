@@ -1,8 +1,6 @@
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-const music = document.querySelector("#music");
-
 function updateTime(){
   // 日付オブジェクトを取得
   const now = new Date();
@@ -16,16 +14,11 @@ function updateTime(){
   const minute = now.getMinutes();
   const millSecond = now.getMilliseconds();
 
-  if(second == 0 && minute == 0 && millSecond == 0){
-    console.log("music");
-    music.play();
-  }
-
   var secondDeg = Number(second * 360 / 60) + Number(millSecond * 360 / 60 / 1000);
   var minuteDeg = Number(minute * 360 / 60) + Number(second * 360 / 60 / 60) + Number(millSecond * 360 / 60 / 60 / 1000);
 
-  $("#span1").css("background", "conic-gradient(var(--span1) " + secondDeg + "deg, var(--span2) " + secondDeg + "deg 360deg)");
-  $("#span2").css("background", "conic-gradient(var(--span1) " + minuteDeg + "deg, var(--span2) " + minuteDeg + "deg 360deg)");
+  document.getElementById("span1").style.background = "conic-gradient(var(--span1) " + secondDeg + "deg, var(--span2) " + secondDeg + "deg 360deg)";
+  document.getElementById("span2").style.background = "conic-gradient(var(--span1) " + minuteDeg + "deg, var(--span2) " + minuteDeg + "deg 360deg)";
 
   // 朝7時以前もしくは夜19時以降はナイトモードをオン
   if(now.getHours() <= 7 || now.getHours() >= 19){
@@ -47,42 +40,70 @@ function updateTime(){
   const startDate = new Date(year, month - 1, 1); // 月の最初の日を取得
   const endDate = new Date(year, month,  0); // 月の最後の日を取得
   const endDayCount = endDate.getDate(); // 月の末日
-  const startDay = startDate.getDay(); // 月の最初の日の曜日を取得
+  const startDay = startDate.getDay(); // 月の最初の日の曜日を取得(0-6)
   let dayCount = 1 // 日にちのカウント
   let calendarHtml = ''; // HTMLを組み立てる変数
 
-  calendarHtml += '<table>';
+  calendarHtml += '<div><div class="week">';
 
   // 曜日の行を作成
   for (let i = 0; i < days.length; i++) {
-      calendarHtml += '<td>' + days[i] + '</td>';
+    calendarHtml += '<div class="day">' + days[i] + '</div>';
   }
 
-  for (let w = 0; w < 6; w++) {
-      calendarHtml += '<tr>';
+  calendarHtml += "</div>";
 
-      for (let d = 0; d < 7; d++) {
-          if (w == 0 && d < startDay) {
-              // 1行目で1日の曜日の前
-              calendarHtml += '<td></td>';
-          } else if (dayCount > endDayCount) {
-              // 末尾の日数を超えた
-              calendarHtml += '<td></td>';
-          } else {
-              if(dayCount == now.getDate()){
-                calendarHtml += '<td class="today">' + dayCount + '</td>';
-              }
-              else{
-                calendarHtml += '<td>' + dayCount + '</td>';
-              }
-              dayCount++;
-          }
+  var w = 0;
+  var weekEnd = true;
+
+  while (weekEnd) {
+  
+    calendarHtml += '<div class="week">';
+
+    for (var d = 0; d < 7; d++) {
+
+      if (w == 0 && d < startDay) {
+        // 1行目で1日の曜日の前
+        calendarHtml += '<div></div>';
       }
-      calendarHtml += '</tr>';
+
+      else if (dayCount > endDayCount) {
+        // 末尾の日数を超えた
+        calendarHtml += '<div></div>';
+        weekEnd = false;
+      }
+      
+      else {
+        if(dayCount == now.getDate()){
+          calendarHtml += '<div id="today" class="day">' + dayCount + '</div>';
+        }
+        else{
+          calendarHtml += '<div class="day">' + dayCount + '</div>';
+        }
+        
+        if(dayCount == endDayCount && d == 6){
+          weekEnd = false;
+        }
+
+        dayCount++;
+      }
+    }
+    calendarHtml += '</div>';
+
+    w++;
   }
-  calendarHtml += '</table>';
+
+  calendarHtml += '</div>';
 
   document.querySelector('#calendar2').innerHTML = calendarHtml;
+
+  document.querySelector("#calendar2>div").style.gridTemplateRows = "repeat(" + String(w+1) + ", 1fr)";
 }
 
-setInterval(updateTime, 10);
+
+window.addEventListener("load", function(){
+  updateTime();
+  setInterval(updateTime, 10);
+
+  document.querySelector(":root").style.fontSize = (window.innerWidth * 0.01) + "px";
+});

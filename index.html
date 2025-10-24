@@ -1,27 +1,50 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME-CLOCK</title>
 
+    <!-- ================================================== -->
+
     <!--FontAwesome読み込み-->
     <script src="https://kit.fontawesome.com/2cd68e5bc6.js" crossorigin="anonymous"></script>
 
+    <!-- ================================================== -->
+
     <!--リセットcssの読み込み-->
-    <link href="https://nearfactory.github.io/clock-home/asset/reset.css" rel="stylesheet">
+    <link href="./asset/css/reset.css" rel="stylesheet">
+
+    <!-- ================================================== -->
 
     <!--自作cssの読み込み-->
-    <link href="https://nearfactory.github.io/clock-home/asset/access.css" rel="stylesheet">
-    <link href="https://nearfactory.github.io/clock-home/asset/style.css" rel="stylesheet">
+    <link href="./asset/css/style.css" rel="stylesheet">
+
+    <!-- ================================================== -->
 
     <!--googleFontsの読み込み-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&family=Sen:wght@400..800&display=swap" rel="stylesheet">
+
+    <!-- iPhone背景色用 -->
+    <meta name="theme-color" content="#f4f4f4">
+
+    <!-- ================================================== -->
+
+    <!-- ファビコン読み込み -->
+    <link rel="icon" type="image/png" href="/asset/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/asset/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/asset/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/asset/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Clock" />
+    <link rel="manifest" href="/asset/favicon/site.webmanifest" />
+
   </head>
 
   <body>
+
     <div id="clockContainer">
       <h1 id="time"></h1>
       <span id="span1"></span>
@@ -29,27 +52,21 @@
       <span id="span3"></span>
     </div>
 
+    <!-- ================================================== -->
+
     <div id="calendarContainer">
       <ul>
+
         <li id="calendar1">
-          <div>
-            <h2 id="dayAndMonth"></h2>
-          </div>
-          
-          <div>
-            <h1 id="date"></h1>
-          </div>
+          <h2 id="dayAndMonth"></h2>
+          <h1 id="date"></h1>
         </li>
+
         <li id="calendar2">
         </li>
       </ul>
-      
     </div>
 
-    <audio id="music" src="https://nearfactory.github.io/clock-home/asset/sound.mp3" preload="auto"></audio>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://nearfactory.github.io/clock-home/asset/script.js"></script>
+    <script src="./asset/js/script.js"></script>
   </body>
 </html>
