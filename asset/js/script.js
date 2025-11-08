@@ -107,3 +107,8 @@ window.addEventListener("load", function(){
 
   document.querySelector(":root").style.fontSize = (window.innerWidth * 0.01) + "px";
 });
+
+// 端末の傾きを検知する
+window.addEventListener("orientationchange", () => {
+  document.querySelector(":root").style.fontSize = (window.innerWidth * 0.01) + "px";
+});
