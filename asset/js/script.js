@@ -112,3 +112,7 @@ window.addEventListener("load", function(){
 window.addEventListener("orientationchange", () => {
   document.querySelector(":root").style.fontSize = (window.innerWidth * 0.01) + "px";
 });
+
+window.getElementById("clockContainer").addEventListener("click", function(){
+  document.querySelector(":root").style.fontSize = (window.innerWidth * 0.01) + "px";
+});
